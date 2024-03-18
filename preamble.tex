@@ -1,0 +1,284 @@
+\usepackage{amsmath,amssymb}
+\usepackage[thicklines]{cancel}
+\usepackage{xfrac}
+\usepackage[version=4]{mhchem}
+\usepackage{multirow}
+\usepackage{appendixnumberbeamer}
+\usepackage{amsmath,bm}
+\usepackage{graphicx}
+\usepackage[percent]{overpic}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathtools}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{mathptmx}
+
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb,amsthm}
+\usepackage{textcomp}
+\usepackage{dsfont}
+\usepackage{colortbl}
+\usepackage{empheq}
+\usepackage{tabularx} % For adjustable-width columns
+
+\usepackage{threeparttable}
+
+% Tableau Classic 10 colors
+\definecolor{tab.blue}{HTML}{1f77b4}
+\definecolor{tab.orange}{HTML}{ff7f0e}
+\definecolor{tab.green}{HTML}{2ca02c}
+\definecolor{tab.red}{HTML}{d62728}
+\definecolor{tab.purple}{HTML}{9467bd}
+\definecolor{tab.brown}{HTML}{8c564b}
+\definecolor{tab.pink}{HTML}{e377c2}
+\definecolor{tab.gray}{HTML}{7f7f7f}
+\definecolor{tab.olive}{HTML}{bcbd22}
+\definecolor{tab.cyan}{HTML}{17becf}
+
+% color for cancel
+\renewcommand{\CancelColor}{\color{tab.red}}
+
+\newcommand{\red}{\color{tab.red}}
+\newcommand{\blue}{\color{tab.blue}}
+\newcommand{\black}{\color{black}}
+
+% Useful packages
+\usepackage[absolute,overlay]{textpos}
+\usepackage[english]{babel}
+\usepackage{chemfig}
+\setchemfig{
+    double bond sep = 0.30 em,
+    atom sep = 2.5 em,
+    bond offset = 0.2 em,
+    bond style = {line width=1pt},
+    arrow coeff = 1.5,
+    arrow style = thick,
+}
+\usepackage[output-decimal-marker={,},mode=text]{siunitx}
+\DeclareSIUnit\gauss{G}
+\DeclareSIUnit\molar{M}
+
+% Beamer layout tweaks
+\usetheme[progressbar=head,subsectionpage=progressbar,numbering=fraction]{metropolis}
+\usefonttheme{professionalfonts}
+\setbeamercolor{thijssen}{fg=normal text.fg!90,bg=normal text.fg!45}
+\setbeamercolor{important}{fg=black,bg=tab.orange}
+\setbeamercolor{background canvas}{bg=white}
+\setbeamercolor{footnote}{fg=normal text.fg!45}
+\setbeamercolor{alerted text}{fg=tab.orange!90!black}
+\setbeamercolor{footline}{fg=normal text.fg!45}
+\setbeamerfont{page number in head/foot}{size=\fontsize{7}{7}\selectfont}
+\setbeamertemplate{footline}{%
+  \begin{beamercolorbox}[wd=\textwidth, sep=1ex]{footline}%
+    \usebeamerfont{page number in head/foot}%
+    \usebeamertemplate*{frame footer}%
+    \insertsectionhead~\ifnumequal{\number\value{subsection}}{0}{}{>~\insertsubsectionhead}%
+    \hfill%
+    \usebeamertemplate{frame numbering}
+  \end{beamercolorbox}%
+}
+\setbeamertemplate{section page}{%
+  \centering
+  \begin{minipage}{22em}
+    \raggedright
+    \usebeamercolor[fg]{section title}
+    \usebeamerfont{section title}
+    \insertsection\\[-1ex]
+    \usebeamertemplate*{progress bar in section page}
+    \par
+    \ifx\insertsubsection\@empty\else%
+      \usebeamercolor[fg]{subsection title}%
+      \usebeamerfont{subsection title}%
+      \insertsubsection
+    \fi
+  \end{minipage}
+  \par
+  \vspace{\baselineskip}
+}
+% Reduce spacing between toc lines
+\makeatletter
+\patchcmd{\beamer@sectionintoc}{\vskip1.5em}{\vskip1.0em}{}{}
+\makeatother
+% Load a heavier math font
+% \usepackage{unicode-math}
+% \setmainfont{FiraMath-Regular.otf}
+% \setmathfont{FiraMath-Regular.otf}  % nice but no caligraphic symbols and some missing
+
+%% \setmathfont{TeX Gyre Bonum Math}  % nice but too wide
+%\setmainfont{TeX Gyre Pagella}
+%\setmathfont{TeX Gyre Pagella Math}  % good weight, nice, calligraphic is crazy
+%%\setmainfont{TeX Gyre Schola}
+%%\setmathfont{TeX Gyre Schola Math} % nice but too wide
+%%\setmainfont{TeX Gyre Termes}
+%%\setmathfont{TeX Gyre Termes Math} % not so nice
+%%\setmainfont{XITS}
+%%\setmathfont{XITS Math} % not so nice
+%\setmainfont{Libertinus Serif}
+%\setmathfont{Libertinus Math}  % good but bold is not very pronounced
+%\setmainfont[Ligatures={Common,Rare,TeX}]{TeX Gyre Pagella}
+%\setmathfont[Scale=MatchUppercase]{Asana Math}
+% \setsansfont
+%     [ItalicFont={Fira Sans Book Italic},
+%     BoldFont={Fira Sans Medium},
+%     BoldItalicFont={Fira Sans Medium Italic}]
+%     {Fira Sans Book}
+% Fixes for missing glyphs
+% See https://github.com/firamath/firamath/issues/50
+%\setmathfont[range={"22EE}]{XITS Math}
+
+
+% Customized math stuff
+\renewcommand*{\vec}[1]{\symbf{#1}}
+\newcommand*{\ten}[1]{\symbf{\overline{#1}}}
+\newcommand*{\op}[1]{\hat{#1}}
+\renewcommand{\d}[1]{\ensuremath{\operatorname{d}\!{#1}}}
+\newcommand\grad{\vec{\nabla}}
+\DeclareMathOperator*{\argmax}{arg\:max}
+\DeclareMathOperator*{\argmin}{arg\:min}
+%\newcommand\tmpidxa{{\textcolor{tab.orange}\blacktriangle}}
+\newcommand\tmpidxa{{\textcolor{tab.orange}\#}}
+\newcommand\hcancel[2][black]{\setbox0=\hbox{$#2$}\rlap{\raisebox{.45\ht0}{\textcolor{#1}{\rule{\wd0}{1pt}}}}#2}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\real}{Re}
+\DeclareMathOperator{\imag}{Im}
+\DeclareMathOperator\erf{erf}
+\newcommand\cpl{\ensuremath{\eta}}
+\newcommand\exf{\ensuremath{\mu}}
+
+% Other custom commands
+\newcommand\minor[1]{{\textcolor{normal text.fg!45}{\scriptsize{}#1}}}
+\newcommand\doi[2]{\href{https://doi.org/#1}{#2}}
+\newcommand\see[1]{\begin{textblock*}{\paperwidth}[1,1](\paperwidth,1.15cm)%
+%\usebeamerfont{page number in head/foot}
+\fontsize{6}{6}\selectfont\begin{beamercolorbox}[wd=\textwidth,sep=1ex,right]{footline}{#1}\end{beamercolorbox}
+\end{textblock*}}
+
+\newcommand{\xyzfigscale}{0.075}
+\NewDocumentCommand{\chemimg}{O{\xyzfigscale} mm}{%
+  \begin{minipage}{0.23\textwidth}
+    \includegraphics[scale=#1]{img_xyz/#2.pdf}
+    \centering
+    \\[0.0em]
+    \scriptsize{\ce{#3}}
+  \end{minipage}
+  % \hfill
+}
+
+% Math commands
+\DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
+
+%%%%% macros %%%%%
+% \DeclareMathOperator*{\argmin}{arg\,min}
+
+\newcommand{\Xs}{X_{\sf s}}
+
+\newcommand{\rhoa}{\rho_a}
+\newcommand{\rhob}{\rho_b}
+\newcommand{\rhoas}{\rho_{a}^{\sf s}}
+\newcommand{\rhobs}{\rho_{b}^{\sf s}}
+
+\newcommand{\rhoam}{\rho_{a,m}}
+\newcommand{\rhobm}{\rho_{b,m}}
+\newcommand{\rhoasm}{\rho_{a,m}^{\sf s}}
+\newcommand{\rhobsm}{\rho_{b,m}^{\sf s}}
+\newcommand{\rhoamo}{\rho_{a,m-1}}
+\newcommand{\rhobmo}{\rho_{b,m-1}}
+\newcommand{\rhoasmo}{\rho_{a,m-1}^{\sf s}}
+\newcommand{\rhobsmo}{\rho_{b,m-1}^{\sf s}}
+
+\newcommand{\rhoaz}{\rho_{a,0}}
+\newcommand{\rhobz}{\rho_{b,0}}
+\newcommand{\rhoazs}{\rho_{a,0}^{\sf s}}
+\newcommand{\rhobzs}{\rho_{b,0}^{\sf s}}
+
+ \def\N{\mathbb{N}}
+ \def\R{\mathbb{R}}
+ \def\C{\mathbb{C}}
+ \def\S{\mathbb{S}}
+
+ \def\cC{\mathcal{C}}
+\newcommand{\cE}{\mathcal E}
+\newcommand{\cJ}{\mathcal J}
+\newcommand{\cL}{\mathcal L}
+ \def\cK{\mathcal{K}}
+ \def\cM{\mathcal{M}}
+ \def\cN{\mathcal{N}}
+ \def\cP{\mathcal{P}}
+ \def\cS{\mathcal{S}}
+ \def\cT{\mathcal{T}}
+
+\def\bcK{{\mathbfcal{K}}}
+\def\bG{{\bm{G}}}
+\def\bz{{\bm{z}}}
+\def\bcM{{\mathbfcal{M}}}
+\def\bcN{{\mathbfcal{N}}}
+\def\bcC{{\mathbfcal{C}}}
+\def\bcD{{\mathbfcal{D}}}
+
+
+\newcommand{\<}{\left\langle}
+\renewcommand{\>}{\right\rangle}
+
+
+\newcommand{\ba}{\mathbf a}
+\newcommand{\bb}{\mathbf b}
+\newcommand{\bc}{\mathbf c}
+\newcommand{\bd}{\mathbf d}
+\newcommand{\be}{\mathbf e}
+\newcommand{\bk}{\mathbf k}
+\newcommand{\bp}{\mathbf p}
+\newcommand{\br}{\mathbf r}
+\newcommand{\bv}{\mathbf v}
+\newcommand{\bw}{\mathbf w}
+\newcommand{\bN}{\mathbf N}
+\newcommand{\bQ}{\mathbf Q}
+\newcommand{\bR}{\mathbf R}
+
+\usepackage{relsize}
+\newcommand{\mfont}[1]{{\textsc{\smaller[1]#1}}}
+% \newcommand{\mfont}[1]{{\texttt{\textsc{#1}}}}
+% \newcommand{\mfont}[1]{{\texttt{#1}}}
+
+% \newcommand{\mfont}[1]{\textsc{#1{\smaller[1]/}mw}}
+% \newcommand{\mw}{\textsc{xlbo{\smaller[1]/}mw}}
+\newcommand{\m}[1]{\mfont{#1}}
+
+\newcommand{\dps}{{\displaystyle }}
+
+\newcommand{\epsOut}{\varepsilon_{\rm out}}
+\newcommand{\epsInn}{\varepsilon_{\rm inn}}
+\newcommand{\opt}{{\rm opt}}
+
+% New commands for beamer
+\newcommand{\brho}{{\color{tab.brown}\bm\rho}}
+
+%
+% %%% Front matter %%%
+%
+
+\title{HMH Beamer Template}
+
+\author{\underline{YingXing Cheng}, Eric Cancès, Virginie Ehrlacher, and Benjamin Stamm\\
+\texttt{\scriptsize yingxing.cheng@mathematik.uni-stuttgart.de}}
+
+\institute{
+%Numerical Mathematics for High Performance Computing,\\[0.0em]
+% Institute of Applied Analysis and Numerical Simulation, University of Stuttgart \\[1.0em]
+GAMM-2024 conference, Magdeburg, Germany
+\\[0.0em]
+Numerical Mathematics for High Performance Computing, University of Stuttgart \\[1.0em]
+\includegraphics[scale=0.65]{tex-img/logo-start-inverted-en.pdf} 
+\hfill
+\includegraphics[scale=0.35]{tex-img/logo-faculty.pdf} 
+\hfill
+\includegraphics[scale=0.27]{tex-img/logo_institute.pdf}
+\hfill
+\includegraphics[scale=0.33]{tex-img/logo-nmh.pdf}
+% \includegraphics[scale=0.7]{logo_cmm.png}\\[-4.0em]
+}
+
+\date{March 19th, 2024}
